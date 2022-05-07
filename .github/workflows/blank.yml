@@ -24,13 +24,14 @@ jobs:
         run: echo "${{ github.event.comment.body }}\n"
       - name: html_url
         run: 'echo "$GITHUB_CONTEXT.event"'
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
       - name: PR Comment
-        uses: actions/github-script@v2
+        uses: actions/github-script@v4
         with:
-          script: return "Hello!"
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Hello World',
+            })
