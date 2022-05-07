@@ -13,7 +13,7 @@ jobs:
         name: "Dump GitHub context"
         run: 'echo "$GITHUB_CONTEXT"'
       - name: "get pullrequest url"
-        run: echo "${{ github.event.issue.pull_request.url }}"
+        run: echo "${{ github.event.number }}"
       - name: "get pullrequest"
         run: echo "${{ github.event.pull_request }}"
       - name: "echo upstream branch"
