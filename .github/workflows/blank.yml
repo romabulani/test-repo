@@ -10,10 +10,13 @@ jobs:
     steps:
       - env:
           GITHUB_CONTEXT: "${{ toJson(github) }}"
+          EVENTS: "${{ toJson(github.event) }}"
         name: "Dump GitHub context"
         run: 'echo "$GITHUB_CONTEXT"'
+      - name: git hub events
+        run: echo "$EVENTS"
       - name: "get pullrequest url"
-        run: echo "${{ toJson(github).event.number }}"
+        run: echo ${{ toJson(github).event.number }}
       - name: "get pullrequest"
         run: echo "${{ github.event.pull_request }}"
       - name: "echo upstream branch"
