@@ -18,9 +18,6 @@ jobs:
         run: echo "${{ github.event.issue.pull_request.number }}"
       - name: "echo upstream branch"
         run: "echo ${{ steps.upstreambranch.outputs.branchname }}\n"
-      - name: Checkout Pull Request
-        run: |
-          echo "${{PR_NUM}}"
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
       - name: PR Comment
