@@ -7,7 +7,6 @@ env:
   GITHUB_CONTEXT: "${{ toJson(github) }}"
   EVENTS: "${{ toJson(github.event) }}"
   HTML_URL: "${{ toJson(github.event.issue.pull_request.html_url) }}"
-  ISSUE_NUM: ${{GITHUB_CONTEXT.issue.number}}
 jobs:
   job01:
     if: "contains(github.event.comment.html_url, '/pull/') && (contains(github.event.comment.body, 'commenttest') || contains(github.event.comment.body, 'netlify'))"
