@@ -30,7 +30,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.issues.createComment({
-            url: HTML_URL,
+            url: $HTML_URL,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: 'Hello World',
