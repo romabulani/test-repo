@@ -10,6 +10,8 @@ jobs:
     steps:
       - env:
           GITHUB_CONTEXT: "${{ toJson(github) }}"
+          PR_URL: "${{ github.event.issue.pull_request.url }}"
+          PR_NUM: ${PR_URL##*/}
         name: "Dump GitHub context"
         run: 'echo "$GITHUB_CONTEXT"'
       - name: "get pullrequest url"
@@ -17,9 +19,6 @@ jobs:
       - name: "echo upstream branch"
         run: "echo ${{ steps.upstreambranch.outputs.branchname }}\n"
       - name: Checkout Pull Request
-        env:
-          PR_URL: "${{ github.event.issue.pull_request.url }}"
-          PR_NUM: ${PR_URL##*/}
         run: |
           echo "${{PR_NUM}}"
       - name: "echo Comment"
