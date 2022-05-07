@@ -23,7 +23,7 @@ jobs:
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
       - name: html_url
-        run: echo "$GITHUB_CONTEXT.event.issue.pull_request.html_url"
+        run: echo $GITHUB_CONTEXT.event.issue.pull_request.html_url
       - name: PR Comment
         uses: actions/github-script@v2
         with:
