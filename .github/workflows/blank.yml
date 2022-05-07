@@ -14,6 +14,8 @@ jobs:
         run: 'echo "$GITHUB_CONTEXT"'
       - name: "get pullrequest url"
         run: echo "${{ github.event.issue.pull_request.url }}"
+      - name: "get pullrequest num"
+        run: echo "${{ github.event.pull_request.number }}"
       - name: "echo upstream branch"
         run: "echo ${{ steps.upstreambranch.outputs.branchname }}\n"
       - name: Checkout Pull Request
