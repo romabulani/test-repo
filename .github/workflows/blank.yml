@@ -19,9 +19,9 @@ jobs:
       - name: Checkout Pull Request
         env:
           PR_NUM: ""
+          PR_URL: "${{ github.event.issue.pull_request.url }}"
+          PR_NUM: ${PR_URL##*/}
         run: |
-          PR_URL="${{ github.event.issue.pull_request.url }}"
-          PR_NUM=${PR_URL##*/}
           echo "${{PR_NUM}}"
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
