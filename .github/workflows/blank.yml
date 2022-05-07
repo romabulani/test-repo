@@ -3,18 +3,17 @@ on:
     types: [created, edited]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  GITHUB_CONTEXT: "${{ toJson(github) }}"
+  EVENTS: "${{ toJson(github.event) }}"
+  HTML_URL: "${{ toJson(github.event.issue.pull_request.html_url) }}"
 jobs:
   job01:
     if: "contains(github.event.comment.html_url, '/pull/') && (contains(github.event.comment.body, 'commenttest') || contains(github.event.comment.body, 'netlify'))"
     runs-on: ubuntu-latest
     steps:
-      - env:
-          GITHUB_CONTEXT: "${{ toJson(github) }}"
-          EVENTS: "${{ toJson(github.event) }}"
-        name: "Dump GitHub context"
-        run: 'echo "$EVENTS"'
       - name: "get pullrequest url"
-        run: echo ${{ toJson(github).event.number }}
+        run: echo "$HTML_URL"
       - name: "get pullrequest"
         run: echo "${{ github.event.pull_request }}"
       - name: "echo upstream branch"
