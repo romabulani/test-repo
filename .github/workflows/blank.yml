@@ -13,11 +13,13 @@ jobs:
         name: "Dump GitHub context"
         run: 'echo "$GITHUB_CONTEXT"'
       - name: "get pullrequest url"
-        run: echo "${{ github.event.issue.pull_request.url }}"
-      # - name: "get pullrequest num"
-      #   run: echo "${{ github.event.pull_request.number }}"
+        run: echo "${{ github.event.number }}"
+      - name: "get pullrequest"
+        run: echo "${{ github.event.pull_request }}"
       - name: "echo upstream branch"
         run: "echo ${{ steps.upstreambranch.outputs.branchname }}\n"
+      - name: Checkout Pull Request
+        run: echo "${{github.event.number}}"
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
       - name: PR Comment
@@ -25,7 +27,6 @@ jobs:
         run: echo "${{ GITHUB_CONTEXT.event.issue.pull_request.html_url }}"
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          issue-number: ${{ toJson(github.event.pull_request.number) }}
           script: |
             github.issues.createComment({
             owner: context.repo.owner,
