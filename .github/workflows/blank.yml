@@ -13,7 +13,7 @@ jobs:
         name: "Dump GitHub context"
         run: 'echo "$GITHUB_CONTEXT"'
       - name: "get pullrequest url"
-        run: echo "${{ github.event.number }}"
+        run: echo "${{ toJson(github).event.number }}"
       - name: "get pullrequest"
         run: echo "${{ github.event.pull_request }}"
       - name: "echo upstream branch"
@@ -23,7 +23,7 @@ jobs:
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
       - name: html_url
-        run: 'echo "$GITHUB_CONTEXT.event.issue.pull_request.html_url"'
+        run: 'echo "$GITHUB_CONTEXT.event"'
       - name: PR Comment
         uses: actions/github-script@v2
         with:
