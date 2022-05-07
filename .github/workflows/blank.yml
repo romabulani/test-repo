@@ -12,9 +12,7 @@ jobs:
           GITHUB_CONTEXT: "${{ toJson(github) }}"
           EVENTS: "${{ toJson(github.event) }}"
         name: "Dump GitHub context"
-        run: |
-          'echo "$GITHUB_CONTEXT"'
-          'echo "$EVENTS"'
+        run: 'echo "$EVENTS"'
       - name: "get pullrequest url"
         run: echo ${{ toJson(github).event.number }}
       - name: "get pullrequest"
