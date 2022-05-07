@@ -24,6 +24,12 @@ jobs:
         run: echo "${{ github.event.comment.body }}\n"
       - name: html_url
         run: 'echo "$GITHUB_CONTEXT.event"'
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
       - name: PR Comment
         uses: actions/github-script@v2
         with:
