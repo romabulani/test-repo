@@ -18,11 +18,9 @@ jobs:
         run: "echo ${{ steps.upstreambranch.outputs.branchname }}\n"
       - name: Checkout Pull Request
         env:
-          PR_NUM: ""
-        run: |
-          PR_URL="${{ github.event.issue.pull_request.url }}"
-          PR_NUM=${PR_URL##*/}
-          echo "${{PR_NUM}}"
+          PR_URL: "${{ github.event.issue.pull_request.url }}"
+          PR_NUM: ${PR_URL##*/}
+        run: echo "${{PR_NUM}}"
       - name: "echo Comment"
         run: echo "${{ github.event.comment.body }}\n"
       - name: PR Comment
@@ -35,4 +33,5 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: 'Hello World'
+            url: 
             })
